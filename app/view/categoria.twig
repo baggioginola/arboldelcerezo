@@ -1,0 +1,164 @@
+{% extends "layout/master.twig" %}
+{% block title %}Bolsas{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+    <script src="{{ settings.JS }}custom/search.js" type="text/javascript"></script>
+    <script src="{{ settings.JS }}bootbox.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block body_id %}productOverview{% endblock %}
+{% block content %}
+    <div class="container-fluid wide-content">
+        <div class="container" id="breadcrumb">
+            <ol>
+                <li><a href="{{ settings.DOMAIN }}">Inicio</a></li>
+                <li>&gt;</li>
+                <li>
+                    <span class="active-page">Bolsas</span>
+                </li>
+            </ol>
+        </div>
+
+        <div class="container pageTitle">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="category_name">Bolsas</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="section_1">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="tab-content">
+
+                            <div class="tab-pane active">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
+                                        <div class="contentSelectors">
+
+                                            <div class="bc-block greyfinder">
+                                                <div class="desktop-sel">
+                                                    <h2>Búsqueda</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h3>Categoría </h3>
+                                        <select class="selectpicker" data-live-search="true" title="Todas"
+                                                id="filter_category" data-window-padding="[bottom]">
+                                            <option value="0">Todas</option>
+                                            <option value="1">Bolsas</option>
+                                            <option value="2">Juguetes</option>
+
+                                        </select>
+                                        <hr/>
+                                        <h3>Precio</h3>
+                                        <select class="selectpicker" data-live-search="true"
+                                                title="Selecciona el precio" id="filter_price"
+                                                data-window-padding="[bottom]">
+                                            <option value="0">Todos</option>
+                                            <option value="1">0 - 100</option>
+                                            <option value="1">100 - 200</option>
+                                            <option value="1">200 - 300</option>
+                                            <option value="1">300 - 400</option>
+                                        </select>
+                                        <hr/>
+                                        <button id="btn_search_products" class="btn btn-default" type="button"
+                                                style="background-color: #2faf9d; border-color: #2faf9d; color: #FFF; float: right;">
+                                            Buscar
+                                        </button>
+
+                                        <div style="clear: both;"><br></div>
+                                        <div role="alert" class="alert alert-danger text-uppercase text-center"
+                                             id="id_message_search" style="display: none;">
+                                            <span><strong>Selecciona</strong> un filtro.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 results-col" id="product_results">
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                            <div class="thumbnail">
+                                                <a href="{{ settings.DOMAIN }}producto/1"
+                                                   class="products_thumbnail">
+                                                    <img
+                                                            src="{{ settings.IMG }}productos/1.jpg"
+                                                            alt=""
+                                                            title=""/>
+                                                    <label>Bolsa 1</label>
+
+                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                            <div class="thumbnail">
+                                                <a href="{{ settings.DOMAIN }}producto/1"
+                                                   class="products_thumbnail">
+                                                    <img
+                                                            src="{{ settings.IMG }}productos/2.jpg"
+                                                            alt=""
+                                                            title=""/>
+                                                    <label>Bolsa 1</label>
+
+                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                            <div class="thumbnail">
+                                                <a href="{{ settings.DOMAIN }}producto/1"
+                                                   class="products_thumbnail">
+                                                    <img
+                                                            src="{{ settings.IMG }}productos/3.jpg"
+                                                            alt=""
+                                                            title=""/>
+                                                    <label>Bolsa 1</label>
+
+                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                            <div class="thumbnail">
+                                                <a href="{{ settings.DOMAIN }}producto/1"
+                                                   class="products_thumbnail">
+                                                    <img
+                                                            src="{{ settings.IMG }}productos/4.jpg"
+                                                            alt=""
+                                                            title=""/>
+                                                    <label>Bolsa 1</label>
+
+                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                            <div class="thumbnail">
+                                                <a href="{{ settings.DOMAIN }}producto/1"
+                                                   class="products_thumbnail">
+                                                    <img
+                                                            src="{{ settings.IMG }}productos/5.jpg"
+                                                            alt=""
+                                                            title=""/>
+                                                    <label>Bolsa 1</label>
+
+                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
