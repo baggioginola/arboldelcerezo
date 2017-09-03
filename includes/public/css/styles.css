@@ -1,0 +1,141 @@
+.navbar-default {
+    background-color: #fff;
+}
+
+#header {
+    -webkit-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+    -moz-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+    box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+}
+
+.navbar-brand img {
+    float: left;
+    width: 50px;
+    margin-right: 15px;
+}
+
+.navbar-default .navbar-brand {
+    color: #151137;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #151137;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #D30029;
+    background-color: transparent;
+}
+
+.wide-content, .wide-content-warning {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#section_2 {
+    padding-top: 40px;
+}
+
+.highlightsTitle {
+    display: block;
+    color: #151137;
+    font-size: 47px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0 0 50px;
+    letter-spacing: .043em;
+    line-height: 1.1em;
+}
+
+span.product-name {
+    display: block;
+    text-align: center;
+    line-height: 18px;
+    margin-top: 5px;
+    height: 42px;
+    overflow: hidden;
+}
+
+.highlights-new .item-highlights-new {
+    display: block;
+    width: auto;
+    height: auto;
+    margin-bottom: 70px;
+}
+
+span.product-name a {
+    display: block;
+    font-size: 16px;
+    color: #151137;
+    text-align: center;
+    line-height: 18px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+span.product-name a:hover {
+    color: #D30029;
+    text-decoration: none;
+}
+
+#breadcrumb li, #breadcrumb li .active-page, #breadcrumb li .nolink-page {
+    font-size: 14px;
+    font-weight: 400
+}
+
+#breadcrumb {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#breadcrumb ol {
+    list-style: none;
+    padding: 0
+}
+
+#breadcrumb li {
+    float: left;
+    margin: 0;
+    padding: 0 0 0 7px
+}
+
+#breadcrumb li .active-page {
+    text-transform: uppercase;
+    color: #D30029
+}
+
+#breadcrumb li .nolink-page, #breadcrumb li a {
+    text-transform: uppercase;
+    color: #151137
+}
+
+#breadcrumb li a:hover {
+    color: #D30029
+}
+
+#productOverview {
+    padding-top: 55px;
+}
+
+#productOverview .wide-content {
+    margin-bottom: 80px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background: 0 0;
+}
+
+.footer .contentFooter {
+    background-color: #151137;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

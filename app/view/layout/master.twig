@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{% block title %}{% endblock %} - Árbol del Cerezo</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ settings.CSS }}styles.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% endblock %}
+</head>
+
+<body id="{% block body_id %}{% endblock %}">
+<nav class="navbar navbar-default navbar-fixed-top" id="header">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="{{ settings.DOMAIN }}"><img src="{{ settings.IMG }}logo.png">Árbol del Cerezo</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Buscar">
+                </div>
+                <button type="submit" class="btn btn-default">Aceptar</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Categorías <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Bolsas</a></li>
+                        <li><a href="#">Juguetes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">¿Quiénes Somos?</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+{% block content %}{% endblock %}
+
+<div class="footer">
+    <div class="container-fluid contentFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 10px;">
+                    <legend style="color: #FFFFFF;"><span class="glyphicon glyphicon-globe" style="font-size:65%; padding-right:10px;"></span>Contacto</legend>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <form>
+                            <address>
+                                <strong style="color: #fff">E-mail</strong><br>
+                                <a href="mailto:#">informes@arboldelcerezo.com.mx</a>
+                            </address>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <form>
+                            <address style="color: #FFF;">
+                                <abbr title="Phone">
+                                    Teléfonos:</abbr><br>
+                                01 (222) 111 1111<br>
+                            </address>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
