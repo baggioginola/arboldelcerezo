@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <title>{% block title %}{% endblock %} - Árbol del Cerezo</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link href="{{ settings.CSS }}dashboard.css" rel="stylesheet">
+        <link href="{{ settings.CSS }}datatable.css" rel="stylesheet">
+        <link href="{{ settings.DATATABLE }}Select/css/select.bootstrap.css" rel="stylesheet">
+    {% endblock %}
+
+</head>
+<body>
+{{ include('templates/navbar.twig') }}
+<div class="container-fluid">
+    <div class="row">
+        {{ include('templates/nav_sidebar.twig') }}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+{% block footer %}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script src="{{ settings.JS }}custom/baseFunctions.js"></script>
+<script src="{{ settings.JS }}bootbox.min.js"></script>
+<script type="text/javascript" src="{{ settings.JS }}custom/config.js" ></script>
+<script type="text/javascript" src="{{ settings.JS }}functions.js" ></script>
+<script type="text/javascript" src="{{ settings.JS }}datatable.js"></script>
+{% endblock %}
+</body>
+</html>
