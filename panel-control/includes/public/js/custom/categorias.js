@@ -3,32 +3,6 @@
  */
 $(document).ready(function () {
 
-    $("#id_imagen").fileinput({
-        uploadUrl: "imagenes/add",
-        allowedFileExtensions: ["jpg", "png", "jpeg"],
-        maxFileCount: 1,
-        minFileCount: 1,
-        uploadAsync: false,
-        language: "es",
-        showUpload: false,
-        fileActionSettings: {showUpload: false, showZoom: false},
-        previewSettings: {image: {width: "auto", height: "100px"}},
-        purifyHtml: true,
-        autoReplace: true,
-        uploadExtraData: function (previewId, index) {
-            var info = {
-                "type": "categorias",
-                "name": $('#submit_id').val(),
-                'num_imagenes': $('.file-initial-thumbs > div').length + $('.file-live-thumbs > div').length
-            };
-            return info;
-        }
-    }).on('filebatchuploadsuccess', function (event, data) {
-        bootbox.alert('Las imágenes se han subido correctamente');
-    }).on('fileloaded', function (event, file, previewId, index, reader) {
-        $('#upload_images').val('1');
-    });
-
     $('#reset_button').click(function () {
         $('#form_global').trigger("reset");
         $('#submit_type').val('categorias/add');
@@ -38,7 +12,7 @@ $(document).ready(function () {
     });
 
     var url = 'categorias/getAll';
-    var columns = [{data: 'tipo'}, {data: 'nombre'}];
+    var columns = [{data: 'nombre'}];
     var table = masterDatatable(url, columns);
 
     var url_last_id = 'categorias/getLastId';
@@ -57,9 +31,9 @@ $(document).ready(function () {
     $('#datatable tbody').on('click', '#btn_edit', function () {
 
         $("#form_alert").slideUp();
-        var id = table.row($(this).parents('tr')).data().id_categoria;
+        var id = table.row($(this).parents('tr')).data().id;
 
-        var data = {id_categoria: id};
+        var data = {id: id};
         var url = 'categorias/getById';
 
         $('#submit_type').val('categorias/edit');
@@ -72,55 +46,17 @@ $(document).ready(function () {
                     $("select[name=" + key + "]").val(val);
                 });
 
-                var images = [];
-                var initialPreviewConfigObj = [];
-                var j = 0;
-                var i = 1;
-
-                var dataImage = getImage(IMAGES_CATEGORIES, response.id_categoria, i);
-                if (dataImage.status == 200) {
-                    images[j] = '<img src="' + dataImage.url + '" class="file-preview-image" alt="Desert" title="Desert" style="width:auto; height:100px;">';
-
-                    var initialPreviewConfigItem = {};
-                    initialPreviewConfigItem['caption'] = dataImage.name;
-                    initialPreviewConfigItem['key'] = j;
-                    initialPreviewConfigObj.push(initialPreviewConfigItem);
-                    j++;
-                }
-
-                $('#id_imagen').fileinput('refresh', {
-                    uploadUrl: "imagenes/edit",
-                    allowedFileExtensions: ["jpg", "png", "jpeg"],
-                    initialPreview: images,
-                    initialPreviewFileType: 'image',
-                    initialPreviewShowDelete: false,
-                    initialPreviewConfig: initialPreviewConfigObj,
-                    validateInitialCount: true,
-                    fileActionSettings: {showDrag: false},
-                    append: true,
-                    showUploadedThumbs: false,
-                    uploadExtraData: function (previewId, index) {
-                        var info = {
-                            "type": "categorias",
-                            "name": $("#submit_id").val(),
-                            'num_imagenes': $('.file-initial-thumbs > div').length + $('.file-live-thumbs > div').length
-                        };
-                        return info;
-                    }
-                });
-
-                $('#upload_images').val('0');
             }
-            $('#submit_id').val(response.id_categoria);
+            $('#submit_id').val(response.id);
         }, 'json');
         return false;
     });
 
     $('#datatable tbody').on('click', '#btn_delete', function () {
-        var id = table.row($(this).parents('tr')).data().id_categoria;
+        var id = table.row($(this).parents('tr')).data().id;
         bootbox.confirm("Eliminar elemento?", function (result) {
             if (result == true) {
-                var data = {id_categoria: id, status: 0};
+                var data = {id: id, status: 0};
                 var url = 'categorias/delete';
                 $.post(url, data, function (response, status) {
                     if (status == 'success') {
@@ -141,20 +77,11 @@ $(document).ready(function () {
 
         var type = $('#submit_type').val();
 
-        if ($('#id_imagen').fileinput('upload') == null && $('#upload_images').val() == 1) {
-            return false;
-        }
-
-        var live_count = $('.file-initial-thumbs > div').length;
-        var initial_count = $('.file-live-thumbs > div').length;
-
-        var fileStack = live_count + initial_count;
-
         var data = $(this).serialize();
 
         if (type == 'categorias/edit') {
             var id = $('#submit_id').val();
-            data = data + '&' + $.param({'id_categoria': id});
+            data = data + '&' + $.param({'id': id});
         }
 
         $.ajax({

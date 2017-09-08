@@ -40,10 +40,10 @@ $(document).ready(function () {
     });
 
     $('#datatable tbody').on('click', '#btn_delete', function () {
-        var id = table.row($(this).parents('tr')).data().id_usuario;
+        var id = table.row($(this).parents('tr')).data().id;
         bootbox.confirm("Eliminar elemento?", function (result) {
             if (result == true) {
-                var data = {id_usuario: id, status: 0};
+                var data = {id: id, status: 0};
                 var url = 'usuarios/delete';
                 $.post(url, data, function (response, status) {
                     if (status == 'success') {
@@ -63,14 +63,15 @@ $(document).ready(function () {
 
         var pw = $('#id_password').val();
         if (pw != $('#submit_pw').val()) {
-            pw = hex_md5(pw);
+            var salt = '4rb01';
+            pw = hex_md5(salt + pw);
         }
 
         var data = $(this).serialize() + '&' + $.param({'password': pw});
         var type = $('#submit_type').val();
         if (type == 'usuarios/edit') {
             var id = $('#submit_id').val();
-            data = data + '&' + $.param({'id_usuario': id});
+            data = data + '&' + $.param({'id': id});
         }
 
         $.ajax({

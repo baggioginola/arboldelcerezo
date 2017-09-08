@@ -56,19 +56,7 @@ $(document).ready(function () {
             $("#id_categoria").append('<option value="'+val.id_categoria+'">'+val.nombre+'</option>');
         });
     }, 'json');
-
-    $.post('marcas/getAll', function (response) {
-        $.each(response, function (key, val) {
-            $("#id_marca").append('<option value="'+val.id_marca+'">'+val.nombre+'</option>');
-        });
-    }, 'json');
-
-    $.post('tipo_cambio/getAll', function (response) {
-        $.each(response, function (key, val) {
-            $("#id_moneda").append('<option value="'+val.id_tipo_cambio+'">'+val.moneda+'</option>');
-        });
-    }, 'json');
-
+    
     var url = 'productos/getAll';
     var columns = [{data: 'marca'},{data: 'codigo_interno'}, {data: 'precio'}, {data: 'precio_compra'}, {data:'iva'}, {data:'moneda'}];
 
@@ -89,9 +77,9 @@ $(document).ready(function () {
 
     $('#datatable tbody').on('click', '#btn_edit', function () {
         $("#form_alert").slideUp();
-        var id = table.row($(this).parents('tr')).data().id_producto;
+        var id = table.row($(this).parents('tr')).data().id;
 
-        var data = {id_producto: id};
+        var data = {id: id};
         var url = 'productos/getById';
 
         $('#submit_type').val('productos/edit');
@@ -110,7 +98,7 @@ $(document).ready(function () {
                 var initialPreviewConfigObj = [];
                 var j = 0;
                 for (var i = 1; i <= response.num_imagenes; i++) {
-                    var dataImage = getImage(IMAGES_PRODUCTS, response.id_producto, i);
+                    var dataImage = getImage(IMAGES_PRODUCTS, response.id, i);
                     if (dataImage.status == 200) {
                         images[j] = '<img src="' + dataImage.url + '" class="file-preview-image" alt="Desert" title="Desert" style="width:auto; height:100px;">';
 
@@ -145,16 +133,16 @@ $(document).ready(function () {
 
                 $('#upload_images').val('0');
             }
-            $('#submit_id').val(response.id_producto);
+            $('#submit_id').val(response.id);
         }, 'json');
         return false;
     });
 
     $('#datatable tbody').on('click', '#btn_delete', function () {
-        var id = table.row($(this).parents('tr')).data().id_producto;
+        var id = table.row($(this).parents('tr')).data().id;
         bootbox.confirm("Eliminar elemento?", function (result) {
             if (result == true) {
-                var data = {id_producto: id, status: 0};
+                var data = {id: id, status: 0};
                 var url = 'productos/delete';
 
                 $.post(url, data, function (response, status) {
@@ -188,7 +176,7 @@ $(document).ready(function () {
 
         if (type == 'productos/edit') {
             var id = $('#submit_id').val();
-            data = data + '&' + $.param({'id_producto': id});
+            data = data + '&' + $.param({'id': id});
         }
 
         data = data + '&' + $.param({'num_imagenes': fileStack}) + '&' + $.param({'descripcion': tinyMCE.get('id_descripcion').getContent()});

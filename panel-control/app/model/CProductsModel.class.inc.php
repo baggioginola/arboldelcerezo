@@ -10,8 +10,8 @@ require_once CLASSES . 'CDatabase.class.inc.php';
 class ProductsModel extends Database
 {
     private static $object = null;
-    private static $table = 'productos';
-    private static $key = 'id_producto';
+    private static $table = 'producto';
+    private static $key = 'id';
 
     public static function singleton()
     {
@@ -31,20 +31,16 @@ class ProductsModel extends Database
         }
         $result_array = array();
 
-        $query = "SELECT " . self::$table . ".id_producto, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
+        $query = "SELECT " . self::$table . ".id, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
         " . self::$table . ".descripcion,
-        " . self::$table . ".detalles_tecnicos, " . self::$table . ".precio, " . self::$table . ".moneda,
-        " . self::$table . ".codigo_interno, categorias.nombre as categoria, marcas.nombre as marca,
-        marcas.descuento,iva, tipo_cambio.moneda, tipo_cambio.tipo_cambio, " . self::$table . ".precio_compra
+        " . self::$table . ".precio,
+        categoria.nombre as categoria
             FROM  " . self::$table . "
-            LEFT JOIN categorias
-             ON " . self::$table . ".id_categoria = categorias.id_categoria
-             LEFT JOIN marcas
-             ON " . self::$table . ".id_marca = marcas.id_marca
-             LEFT JOIN tipo_cambio
-             ON " . self::$table . ".moneda = tipo_cambio.id_tipo_cambio
+            LEFT JOIN categoria
+             ON " . self::$table . ".id_categoria = categoria.id
             WHERE " . self::$table . ".STATUS = true;";
 
+        echo $query;
         if (!$result = $this->query($query)) {
             return false;
         }
@@ -63,7 +59,7 @@ class ProductsModel extends Database
         }
         $result_array = array();
 
-        $query = "SELECT MAX(id_producto) as id FROM " . self::$table . " ";
+        $query = "SELECT MAX(id) as id FROM " . self::$table . " ";
 
         if (!$result = $this->query($query)) {
             return false;
@@ -88,20 +84,20 @@ class ProductsModel extends Database
 
         $result_array = array();
 
-        $query = "SELECT " . self::$table . ".id_producto, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
+        $query = "SELECT " . self::$table . ".id, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
         " . self::$table . ".descripcion,
         " . self::$table . ".detalles_tecnicos, " . self::$table . ".precio, " . self::$table . ".moneda,
-        " . self::$table . ".codigo_interno, categorias.nombre as categoria, marcas.nombre as marca,
+        " . self::$table . ".codigo_interno, categoria.nombre as categoria, marcas.nombre as marca,
         marcas.descuento,iva, " . self::$table . ".moneda, tipo_cambio.tipo_cambio, " . self::$table . ".id_marca, num_imagenes,
-        " . self::$table . ".precio_compra, " . self::$table . ".clave_alterna, " .self::$table . ".departamento
+        " . self::$table . ".precio_compra, " . self::$table . ".clave_alterna, " . self::$table . ".departamento
             FROM  " . self::$table . "
-            LEFT JOIN categorias
-             ON " . self::$table . ".id_categoria = categorias.id_categoria
+            LEFT JOIN categoria
+             ON " . self::$table . ".id_categoria = categoria.id_categoria
              LEFT JOIN marcas
              ON " . self::$table . ".id_marca = marcas.id_marca
              LEFT JOIN tipo_cambio
              ON " . self::$table . ".moneda = tipo_cambio.id_tipo_cambio
-             WHERE id_producto = '" . $id . "' ";
+             WHERE id = '" . $id . "' ";
 
         if (!$result = $this->query($query)) {
             return false;
@@ -129,7 +125,7 @@ class ProductsModel extends Database
 
         $result_array = array();
 
-        $query = "SELECT " . self::$table . ".id_producto, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
+        $query = "SELECT " . self::$table . ".id, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
         " . self::$table . ".descripcion,
         " . self::$table . ".detalles_tecnicos, " . self::$table . ".precio, " . self::$table . ".moneda,
         " . self::$table . ".codigo_interno

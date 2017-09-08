@@ -17,12 +17,11 @@ class Categories extends BaseController
     private $log = array();
 
     private $validParameters = array(
-        'id_categoria' => TYPE_INT,
+        'id' => TYPE_INT,
         'nombre' => TYPE_ALPHA,
         'status' => TYPE_INT,
         'fecha_alta' => TYPE_DATE,
-        'fecha_modifica' => TYPE_DATE,
-        'id_categoria_padre' => TYPE_INT
+        'fecha_modifica' => TYPE_DATE
     );
 
     /**
@@ -67,7 +66,7 @@ class Categories extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        $result = CategoriesModel::singleton()->getById($this->parameters['id_categoria']);
+        $result = CategoriesModel::singleton()->getById($this->parameters['id']);
 
         return json_encode(UTF8Converter($result));
     }
@@ -100,9 +99,9 @@ class Categories extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        $id = $this->parameters['id_categoria'];
+        $id = $this->parameters['id'];
 
-        unset($this->parameters['id_categoria']);
+        unset($this->parameters['id']);
 
         $this->parameters['fecha_modifica'] = date('Y-m-d H:i:s');
         if (!CategoriesModel::singleton()->edit($this->parameters, $id)) {
@@ -121,9 +120,9 @@ class Categories extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        $id = $this->parameters['id_categoria'];
+        $id = $this->parameters['id'];
 
-        unset($this->parameters['id_categoria']);
+        unset($this->parameters['id']);
 
         if (!CategoriesModel::singleton()->edit($this->parameters, $id)) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));

@@ -17,23 +17,15 @@ class Products extends BaseController
     private $log = array();
 
     private $validParameters = array(
-        'id_producto' => TYPE_INT,
+        'id' => TYPE_INT,
         'nombre' => TYPE_ALPHA,
         'descripcion' => TYPE_ALPHA,
-        'detalles_tecnicos' => TYPE_ALPHA,
         'status' => TYPE_INT,
         'fecha_alta' => TYPE_DATE,
         'fecha_modifica' => TYPE_DATE,
         'id_categoria' => TYPE_INT,
-        'iva' => TYPE_FLOAT,
-        'codigo_interno' => TYPE_ALPHA,
-        'moneda' => TYPE_INT,
-        'id_marca' => TYPE_INT,
         'num_imagenes' => TYPE_INT,
-        'precio' => TYPE_FLOAT,
-        'precio_compra' => TYPE_FLOAT,
-        'clave_alterna' => TYPE_ALPHA,
-        'departamento' => TYPE_ALPHA
+        'precio' => TYPE_FLOAT
     );
 
     /**
@@ -78,7 +70,7 @@ class Products extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        $result = ProductsModel::singleton()->getById($this->parameters['id_producto']);
+        $result = ProductsModel::singleton()->getById($this->parameters['id']);
 
         return json_encode(UTF8Converter($result));
     }
@@ -116,12 +108,11 @@ class Products extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        $id = $this->parameters['id_producto'];
+        $id = $this->parameters['id'];
 
-        unset($this->parameters['id_producto']);
+        unset($this->parameters['id']);
 
         $this->parameters['fecha_modifica'] = date('Y-m-d H:i:s');
-        Debugger::add('parameters class', $this->parameters, true, __LINE__, __METHOD__);
         if (!ProductsModel::singleton()->edit($this->parameters, $id)) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
@@ -138,9 +129,9 @@ class Products extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        $id = $this->parameters['id_producto'];
+        $id = $this->parameters['id'];
 
-        unset($this->parameters['id_producto']);
+        unset($this->parameters['id']);
 
         if (!ProductsModel::singleton()->edit($this->parameters, $id)) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
@@ -160,76 +151,6 @@ class Products extends BaseController
         return $result;
     }
 
-
-    /**
-     * @return string
-     */
-    public function addXLS($array = array())
-    {
-        if (!$array) {
-            return false;
-        }
-
-        $array['status'] = 1;
-        $array['fecha_alta'] = date('Y-m-d H:i:s');
-        $array['fecha_modifica'] = date('Y-m-d H:i:s');
-        $array['iva'] = 0.16;
-        $array['num_imagenes'] = 0;
-        $array['likes'] = 0;
-
-        $result = array();
-        if (!$result['id'] = ProductsModel::singleton()->add($array)) {
-            return false;
-        }
-
-        return $result['id'];
-    }
-
-    /**
-     * @return string
-     */
-    public function editXLS($parameters = array())
-    {
-        if (!$parameters) {
-            return false;
-        }
-
-        $id = $parameters['id_producto'];
-        unset($parameters['id_producto']);
-
-        $parameters['status'] = 1;
-        $parameters['fecha_modifica'] = date('Y-m-d H:i:s');
-
-        if (!ProductsModel::singleton()->edit($parameters, $id)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * @return string
-     */
-    public function getByCodigoInterno($codigo_interno = null)
-    {
-        if (is_null($codigo_interno)) {
-            return false;
-        }
-
-        $result = ProductsModel::singleton()->getByCodigoInterno($codigo_interno);
-
-        return $result;
-    }
-
-    public function updateSales($id_product = null, $value = null)
-    {
-        if (is_null($id_product) || is_null($value)) {
-            return false;
-        }
-
-        return ProductsModel::singleton()->updateSales($id_product, $value);
-    }
-
     /**
      * @return bool
      */
@@ -239,7 +160,6 @@ class Products extends BaseController
             return false;
         }
 
-        Debugger::add('parameters', $_POST, true, __LINE__, __METHOD__);
         if (!$this->validateParameters($_POST, $this->validParameters)) {
             return false;
         }
