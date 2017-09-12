@@ -8,6 +8,9 @@
 require_once __CONTROLLER__ . 'CBaseController.class.inc.php';
 require_once __MODEL__ . 'CProductsModel.class.inc.php';
 
+/**
+ * Class Products
+ */
 class Products extends BaseController
 {
     private static $object = null;
@@ -81,7 +84,6 @@ class Products extends BaseController
     public function add()
     {
         if (!$this->_setParameters()) {
-            LogsController::store();
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
@@ -90,11 +92,11 @@ class Products extends BaseController
         $this->parameters['fecha_modifica'] = date('Y-m-d H:i:s');
 
         $result = array();
+
         if (!$result['id'] = ProductsModel::singleton()->add($this->parameters)) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        LogsController::store();
         return json_encode($this->getResponse(STATUS_SUCCESS, MESSAGE_SUCCESS, $result));
     }
 

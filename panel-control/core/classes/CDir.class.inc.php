@@ -7,9 +7,8 @@
  * Time: 9:43 AM
  */
 
-require_once CLASSES . 'CFile.class.inc.php';
+
 require_once __CONTROLLER__ . 'CBaseController.class.inc.php';
-require_once __CONTROLLER__ . 'CCategoriesController.class.inc.php';
 
 class CDir extends BaseController
 {
@@ -135,36 +134,9 @@ class CDir extends BaseController
      */
     public function setDir()
     {
-        if (!$this->_setType()) {
-            return false;
-        }
+        $this->dir = PRODUCT_IMG;
+        $this->_setType();
 
-        switch($this->type){
-            case 'proyectos':
-                $this->dir = PROJECT_IMG;
-                break;
-            case 'productos':
-                $this->dir = PRODUCT_IMG;
-                break;
-            case 'categorias':
-                $this->dir = CATEGORY_IMG;
-                break;
-            case 'banner':
-                $this->dir = BANNER_IMG;
-                break;
-            case 'banner_big':
-                $this->dir = BANNER_BIG_IMG;
-                break;
-            case 'banner_top':
-                $this->dir = BANNER_TOP_IMG;
-                break;
-            case 'banner_brands':
-                $this->dir = BANNER_BRANDS_IMG;
-                break;
-            default: return false;
-            break;
-
-        }
         return true;
     }
 
@@ -193,36 +165,7 @@ class CDir extends BaseController
      */
     private function _setType()
     {
-        if (!isset($_REQUEST['type']) || empty($_REQUEST['type'])) {
-            return false;
-        }
-
-        $this->type = trim($_REQUEST['type']);
-        Debugger::add('setType', $this->type, false, __LINE__, __METHOD__);
-        return true;
-    }
-
-    /**
-     * @return bool
-     */
-    private function _setCategory()
-    {
-        if (isset($_REQUEST['categoria'])) {
-            $this->category = Categories::singleton()->getKeyById($_REQUEST['categoria']);
-        }
-        return true;
-    }
-
-    /**
-     * @return bool
-     */
-    public function setKeyName()
-    {
-        if (!isset($_REQUEST['key_nombre']) || empty($_REQUEST['key_nombre'])) {
-            return false;
-        }
-        $this->key_name = $_REQUEST['key_nombre'];
-
+        $this->type = 'productos';
         return true;
     }
 

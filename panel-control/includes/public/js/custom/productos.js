@@ -31,9 +31,7 @@ $(document).ready(function () {
         autoReplace: true,
         uploadExtraData: function (previewId, index) {
             var info = {
-                "type": "productos",
-                "name": $('#submit_id').val(),
-                'num_imagenes': $('.file-initial-thumbs > div').length + $('.file-live-thumbs > div').length
+                "name": $('#submit_id').val()
             };
             return info;
         }
@@ -53,12 +51,12 @@ $(document).ready(function () {
 
     $.post('categorias/getAll', function (response) {
         $.each(response, function (key, val) {
-            $("#id_categoria").append('<option value="'+val.id_categoria+'">'+val.nombre+'</option>');
+            $("#id_categoria").append('<option value="' + val.id + '">' + val.nombre + '</option>');
         });
     }, 'json');
-    
+
     var url = 'productos/getAll';
-    var columns = [{data: 'marca'},{data: 'codigo_interno'}, {data: 'precio'}, {data: 'precio_compra'}, {data:'iva'}, {data:'moneda'}];
+    var columns = [{data: 'categoria'}, {data: 'nombre'}, {data: 'precio'}];
 
     var table = masterDatatable(url, columns);
 
@@ -97,7 +95,8 @@ $(document).ready(function () {
                 var images = [];
                 var initialPreviewConfigObj = [];
                 var j = 0;
-                for (var i = 1; i <= response.num_imagenes; i++) {
+                var num_images = 1;
+                for (var i = 1; i <= num_images; i++) {
                     var dataImage = getImage(IMAGES_PRODUCTS, response.id, i);
                     if (dataImage.status == 200) {
                         images[j] = '<img src="' + dataImage.url + '" class="file-preview-image" alt="Desert" title="Desert" style="width:auto; height:100px;">';
@@ -123,9 +122,7 @@ $(document).ready(function () {
                     showUploadedThumbs: false,
                     uploadExtraData: function (previewId, index) {
                         var info = {
-                            "type": "productos",
-                            "name": $("#submit_id").val(),
-                            'num_imagenes': $('.file-initial-thumbs > div').length + $('.file-live-thumbs > div').length
+                            "name": $("#submit_id").val()
                         };
                         return info;
                     }
@@ -167,11 +164,6 @@ $(document).ready(function () {
             return false;
         }
 
-        var live_count = $('.file-initial-thumbs > div').length;
-        var initial_count = $('.file-live-thumbs > div').length;
-
-        var fileStack = live_count + initial_count;
-
         var data = $(this).serialize();
 
         if (type == 'productos/edit') {
@@ -179,7 +171,7 @@ $(document).ready(function () {
             data = data + '&' + $.param({'id': id});
         }
 
-        data = data + '&' + $.param({'num_imagenes': fileStack}) + '&' + $.param({'descripcion': tinyMCE.get('id_descripcion').getContent()});
+        data = data + '&' + $.param({'descripcion': tinyMCE.get('id_descripcion').getContent()});
 
         $.ajax({
             url: type,

@@ -7,12 +7,18 @@
  */
 require_once CLASSES . 'CDatabase.class.inc.php';
 
+/**
+ * Class ProductsModel
+ */
 class ProductsModel extends Database
 {
     private static $object = null;
     private static $table = 'producto';
     private static $key = 'id';
 
+    /**
+     * @return null|ProductsModel
+     */
     public static function singleton()
     {
         if (is_null(self::$object)) {
@@ -40,7 +46,6 @@ class ProductsModel extends Database
              ON " . self::$table . ".id_categoria = categoria.id
             WHERE " . self::$table . ".STATUS = true;";
 
-        echo $query;
         if (!$result = $this->query($query)) {
             return false;
         }
@@ -86,51 +91,12 @@ class ProductsModel extends Database
 
         $query = "SELECT " . self::$table . ".id, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
         " . self::$table . ".descripcion,
-        " . self::$table . ".detalles_tecnicos, " . self::$table . ".precio, " . self::$table . ".moneda,
-        " . self::$table . ".codigo_interno, categoria.nombre as categoria, marcas.nombre as marca,
-        marcas.descuento,iva, " . self::$table . ".moneda, tipo_cambio.tipo_cambio, " . self::$table . ".id_marca, num_imagenes,
-        " . self::$table . ".precio_compra, " . self::$table . ".clave_alterna, " . self::$table . ".departamento
+        " . self::$table . ".precio,
+        categoria.nombre as categoria
             FROM  " . self::$table . "
             LEFT JOIN categoria
-             ON " . self::$table . ".id_categoria = categoria.id_categoria
-             LEFT JOIN marcas
-             ON " . self::$table . ".id_marca = marcas.id_marca
-             LEFT JOIN tipo_cambio
-             ON " . self::$table . ".moneda = tipo_cambio.id_tipo_cambio
-             WHERE id = '" . $id . "' ";
-
-        if (!$result = $this->query($query)) {
-            return false;
-        }
-
-        $this->close_connection();
-
-        while ($row = $this->fetch_assoc($result)) {
-            $result_array = $row;
-        }
-
-        return $result_array;
-    }
-
-
-    public function getByCodigoInterno($id = '')
-    {
-        if (empty($id)) {
-            return false;
-        }
-
-        if (!$this->connect()) {
-            return false;
-        }
-
-        $result_array = array();
-
-        $query = "SELECT " . self::$table . ".id, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
-        " . self::$table . ".descripcion,
-        " . self::$table . ".detalles_tecnicos, " . self::$table . ".precio, " . self::$table . ".moneda,
-        " . self::$table . ".codigo_interno
-            FROM  " . self::$table . "
-            WHERE codigo_interno = '" . $id . "' ";
+             ON " . self::$table . ".id_categoria = categoria.id
+            WHERE " . self::$table . ".id = '" . $id . "' ";
 
         if (!$result = $this->query($query)) {
             return false;

@@ -64,8 +64,6 @@ function resizeImage($path, $height, $width, $extension)
         $calidad = 9;
         imagepng($tmp2, $path, $calidad, PNG_ALL_FILTERS);
     }
-
-    Debugger::add('resizeImage final', $path, false, __LINE__, __METHOD__);
 }
 
 /**

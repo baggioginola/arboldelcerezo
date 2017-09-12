@@ -12,6 +12,9 @@ require_once __MODEL__ . 'CLoginModel.class.inc.php';
 
 #require_once CLASSES . 'CSession.class.inc.php';
 
+/**
+ * Class Login
+ */
 class Login extends BaseController
 {
     public static $object = null;
@@ -22,6 +25,9 @@ class Login extends BaseController
         'password' => TYPE_ALPHA
     );
 
+    /**
+     * @return Login|null
+     */
     public static function singleton()
     {
         if (is_null(self::$object)) {

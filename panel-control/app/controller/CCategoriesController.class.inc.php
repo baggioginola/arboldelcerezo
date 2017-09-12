@@ -1,13 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: mario
- * Date: 01/feb/2017
- * Time: 20:20
+ *
  */
 require_once __CONTROLLER__ . 'CBaseController.class.inc.php';
 require_once __MODEL__ . 'CCategoriesModel.class.inc.php';
 
+/**
+ * Class Categories
+ */
 class Categories extends BaseController
 {
     private static $object = null;

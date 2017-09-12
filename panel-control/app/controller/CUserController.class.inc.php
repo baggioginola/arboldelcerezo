@@ -8,6 +8,9 @@
 require_once __CONTROLLER__ . 'CBaseController.class.inc.php';
 require_once __MODEL__ . 'CUserModel.class.inc.php';
 
+/**
+ * Class UserController
+ */
 class UserController extends BaseController
 {
     private static $object = null;
@@ -16,6 +19,9 @@ class UserController extends BaseController
 
     private $log = array();
 
+    /**
+     * @var array
+     */
     private $validParameters = array(
         'id' => TYPE_INT,
         'nombre' => TYPE_ALPHA,
