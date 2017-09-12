@@ -46,8 +46,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Categorías <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ settings.DOMAIN }}categoria/1">Bolsas</a></li>
-                        <li><a href="{{ settings.DOMAIN }}categoria/1">Juguetes</a></li>
+                        {% for category  in categories %}
+                            <li><a href="{{ settings.DOMAIN }}categoria/{{ category.id }}">{{ category.nombre }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </li>
                 <li><a href="{{ settings.DOMAIN }}quienes-somos">¿Quiénes Somos?</a></li>
@@ -65,7 +67,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 10px;">
-                    <legend style="color: #FFFFFF;"><span class="glyphicon glyphicon-globe" style="font-size:65%; padding-right:10px;"></span>Contacto</legend>
+                    <legend style="color: #FFFFFF;"><span class="glyphicon glyphicon-globe"
+                                                          style="font-size:65%; padding-right:10px;"></span>Contacto
+                    </legend>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <form>
                             <address>

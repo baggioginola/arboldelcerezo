@@ -4,7 +4,6 @@
 
 {% block head %}
     {{ parent() }}
-
 {% endblock %}
 
 {% block content %}
@@ -48,134 +47,32 @@
                     <h2 class="highlightsTitle">Productos</h2>
 
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <div class="item-highlights-new">
-                                <div class="thumbnail">
-                                    <a href="{{ settings.DOMAIN }}producto/1">
-                                        <div class="content-image">
-                                            <img class="img-responsive center-block"
-                                                 src="{{ settings.IMG }}productos/1.jpg"
-                                                 alt=""
-                                                 style="height: 225px;">
-                                        </div>
-                                    </a>
+                        {% for producto in products %}
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="item-highlights-new">
+                                    <div class="thumbnail">
+                                        <a href="{{ settings.DOMAIN }}producto/{{ producto.id }}">
+                                            <div class="content-image">
+                                                <img class="img-responsive center-block"
+                                                     src="{{ settings.PRODUCT_IMG }}{{ producto.id }}.jpg"
+                                                     alt=""
+                                                     style="height: 225px;">
+                                            </div>
+                                        </a>
                                     <span class="product-name">
-                                        <a href="{{ settings.DOMAIN }}producto/1">
-                                            Nombre
+                                        <a href="{{ settings.DOMAIN }}producto/{{ producto.id }}">
+                                            {% autoescape %}
+                                            {{ producto.nombre | raw }}
+                                            {% endautoescape %}
                                             <br>
-                                            $ 125.00
+                                            $ {{ producto.precio }}
                                         </a>
                                     </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <div class="item-highlights-new">
-                                <div class="thumbnail">
-                                    <a href="{{ settings.DOMAIN }}producto/1">
-                                        <div class="content-image">
-                                            <img class="img-responsive center-block"
-                                                 src="{{ settings.IMG }}productos/2.jpg"
-                                                 alt=""
-                                                 style="height: 225px;">
-                                        </div>
-                                    </a>
-                                    <span class="product-name">
-                                        <a href="{{ settings.DOMAIN }}producto/1">
-                                            Nombre
-                                            <br>
-                                            $ 125.00
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <div class="item-highlights-new">
-                                <div class="thumbnail">
-                                    <a href="{{ settings.DOMAIN }}producto/1">
-                                        <div class="content-image">
-                                            <img class="img-responsive center-block"
-                                                 src="{{ settings.IMG }}productos/3.jpg"
-                                                 alt=""
-                                                 style="height: 225px;">
-                                        </div>
-                                    </a>
-                                    <span class="product-name">
-                                        <a href="{{ settings.DOMAIN }}producto/1">
-                                            Nombre
-                                            <br>
-                                            $ 125.00
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <div class="item-highlights-new">
-                                <div class="thumbnail">
-                                    <a href="{{ settings.DOMAIN }}producto/1">
-                                        <div class="content-image">
-                                            <img class="img-responsive center-block"
-                                                 src="{{ settings.IMG }}productos/4.jpg"
-                                                 alt=""
-                                                 style="height: 225px;">
-                                        </div>
-                                    </a>
-                                    <span class="product-name">
-                                        <a href="{{ settings.DOMAIN }}producto/1">
-                                            Nombre
-                                            <br>
-                                            $ 125.00
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <div class="item-highlights-new">
-                                <div class="thumbnail">
-                                    <a href="{{ settings.DOMAIN }}producto/1">
-                                        <div class="content-image">
-                                            <img class="img-responsive center-block"
-                                                 src="{{ settings.IMG }}productos/5.jpg"
-                                                 alt=""
-                                                 style="height: 225px;">
-                                        </div>
-                                    </a>
-                                    <span class="product-name">
-                                        <a href="{{ settings.DOMAIN }}producto/1">
-                                            Nombre
-                                            <br>
-                                            $ 125.00
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                            <div class="item-highlights-new">
-                                <div class="thumbnail">
-                                    <a href="{{ settings.DOMAIN }}producto/1">
-                                        <div class="content-image">
-                                            <img class="img-responsive center-block"
-                                                 src="{{ settings.IMG }}productos/6.jpg"
-                                                 alt=""
-                                                 style="height: 225px;">
-                                        </div>
-                                    </a>
-                                    <span class="product-name">
-                                        <a href="{{ settings.DOMAIN }}producto/1">
-                                            Nombre
-                                            <br>
-                                            $ 125.00
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+
                     </div>
                 </div>
             </div>

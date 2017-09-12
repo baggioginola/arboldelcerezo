@@ -6,9 +6,17 @@
  * Time: 19:39
  */
 
+require_once __CONTROLLER__ . 'CCategoriesController.class.inc.php';
+
+$categories = Categories::singleton()->getAll();
+
 $app->get('/', function ($request, $response, $args) {
-    global $settings;
-    return $this->view->render($response, 'main.twig', array('settings' => $settings));
+    global $settings, $categories;
+    require_once __CONTROLLER__ . 'CProductsController.class.inc.php';
+
+    $products = Products::singleton()->getRandomAll();
+
+    return $this->view->render($response, 'main.twig', array('settings' => $settings, 'categories' => $categories, 'products' => $products));
 });
 
 $app->get('/categoria/{id_categoria}', function ($request, $response, $args) {

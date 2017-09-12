@@ -25,18 +25,10 @@ define('JS', DOMAIN . 'includes/public/js/');
 define('IMG', DOMAIN . 'includes/public/img/');
 
 define('PRODUCT_IMG', DOMAIN . 'panel-control/includes/public/imagenes_productos/');
-define('PROJECT_IMG', DOMAIN . 'panel-control/includes/public/imagenes_proyectos/');
-define('BANNER_IMG', DOMAIN . 'panel-control/includes/public/imagenes_banner/');
-define('CATEGORY_IMG', DOMAIN . 'panel-control/includes/public/imagenes_categorias/');
-
-define('PRODUCT_IMG_ROOT', __ROOT__ . '/panel-control/includes/public/imagenes_productos/');
-define('PROJECT_IMG_ROOT', __ROOT__ . '/panel-control/includes/public/imagenes_proyectos/');
-define('BANNER_IMG_ROOT', __ROOT__ . '/panel-control/includes/public/imagenes_banner/');
-define('CATEGORY_IMG_ROOT', __ROOT__ . '/panel-control/includes/public/imagenes_categorias/');
 
 #Database
 define('DBHOST', 'localhost');
-define('DBNAME', '');
+define('DBNAME', 'arboldelcerezo');
 define('DBUSER', 'root');
 define('DBPASS', '');
 

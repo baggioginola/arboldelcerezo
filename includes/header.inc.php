@@ -19,9 +19,7 @@ $settings = array(
     'JS' => JS,
     'IMG' => IMG,
     'DOMAIN' => DOMAIN,
-    'PRODUCT_IMG' => PRODUCT_IMG,
-    'PROJECT_IMG' => PROJECT_IMG,
-    'BANNER_IMG' => BANNER_IMG
+    'PRODUCT_IMG' => PRODUCT_IMG
 );
 
 $configuration = [
