@@ -1,5 +1,5 @@
 {% extends "layout/master.twig" %}
-{% block title %}Bolsas{% endblock %}
+{% block title %}{{ category.nombre }}{% endblock %}
 
 {% block head %}
     {{ parent() }}
@@ -18,7 +18,7 @@
                 <li><a href="{{ settings.DOMAIN }}">Inicio</a></li>
                 <li>&gt;</li>
                 <li>
-                    <span class="active-page">Bolsas</span>
+                    <span class="active-page">{{ category.nombre }}</span>
                 </li>
             </ol>
         </div>
@@ -26,7 +26,7 @@
         <div class="container pageTitle">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="category_name">Bolsas</h1>
+                    <h1 class="category_name">{{ category.nombre }}</h1>
                 </div>
             </div>
         </div>
@@ -40,118 +40,30 @@
 
                             <div class="tab-pane active">
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 
-                                        <div class="contentSelectors">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 results-col"
+                                         id="product_results">
+                                        {% for producto in products %}
+                                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                                <div class="thumbnail">
+                                                    <a href="{{ settings.DOMAIN }}producto/{{ producto.id }}"
+                                                       class="products_thumbnail">
+                                                        <img
+                                                                src="{{ producto.url_image }}"
+                                                                alt="{% autoescape %}{{ producto.nombre | raw }}{% endautoescape %}"
+                                                                title="{% autoescape %}{{ producto.nombre | raw }}{% endautoescape %}"
+                                                                />
+                                                        <label>
+                                                            {% autoescape %}
+                                                            {{ producto.nombre | raw }}
+                                                            {% endautoescape %}
+                                                        </label>
 
-                                            <div class="bc-block greyfinder">
-                                                <div class="desktop-sel">
-                                                    <h2>Búsqueda</h2>
+                                                        <label style="font-weight: bold; height: 45px;">${{ producto.precio }}</label>
+                                                    </a>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <h3>Categoría </h3>
-                                        <select class="selectpicker" data-live-search="true" title="Todas"
-                                                id="filter_category" data-window-padding="[bottom]">
-                                            <option value="0">Todas</option>
-                                            <option value="1">Bolsas</option>
-                                            <option value="2">Juguetes</option>
-
-                                        </select>
-                                        <hr/>
-                                        <h3>Precio</h3>
-                                        <select class="selectpicker" data-live-search="true"
-                                                title="Selecciona el precio" id="filter_price"
-                                                data-window-padding="[bottom]">
-                                            <option value="0">Todos</option>
-                                            <option value="1">0 - 100</option>
-                                            <option value="1">100 - 200</option>
-                                            <option value="1">200 - 300</option>
-                                            <option value="1">300 - 400</option>
-                                        </select>
-                                        <hr/>
-                                        <button id="btn_search_products" class="btn btn-default" type="button"
-                                                style="background-color: #2faf9d; border-color: #2faf9d; color: #FFF; float: right;">
-                                            Buscar
-                                        </button>
-
-                                        <div style="clear: both;"><br></div>
-                                        <div role="alert" class="alert alert-danger text-uppercase text-center"
-                                             id="id_message_search" style="display: none;">
-                                            <span><strong>Selecciona</strong> un filtro.</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 results-col" id="product_results">
-                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                            <div class="thumbnail">
-                                                <a href="{{ settings.DOMAIN }}producto/1"
-                                                   class="products_thumbnail">
-                                                    <img
-                                                            src="{{ settings.IMG }}productos/1.jpg"
-                                                            alt=""
-                                                            title=""/>
-                                                    <label>Bolsa 1</label>
-
-                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                            <div class="thumbnail">
-                                                <a href="{{ settings.DOMAIN }}producto/1"
-                                                   class="products_thumbnail">
-                                                    <img
-                                                            src="{{ settings.IMG }}productos/2.jpg"
-                                                            alt=""
-                                                            title=""/>
-                                                    <label>Bolsa 1</label>
-
-                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                            <div class="thumbnail">
-                                                <a href="{{ settings.DOMAIN }}producto/1"
-                                                   class="products_thumbnail">
-                                                    <img
-                                                            src="{{ settings.IMG }}productos/3.jpg"
-                                                            alt=""
-                                                            title=""/>
-                                                    <label>Bolsa 1</label>
-
-                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                            <div class="thumbnail">
-                                                <a href="{{ settings.DOMAIN }}producto/1"
-                                                   class="products_thumbnail">
-                                                    <img
-                                                            src="{{ settings.IMG }}productos/4.jpg"
-                                                            alt=""
-                                                            title=""/>
-                                                    <label>Bolsa 1</label>
-
-                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                            <div class="thumbnail">
-                                                <a href="{{ settings.DOMAIN }}producto/1"
-                                                   class="products_thumbnail">
-                                                    <img
-                                                            src="{{ settings.IMG }}productos/5.jpg"
-                                                            alt=""
-                                                            title=""/>
-                                                    <label>Bolsa 1</label>
-
-                                                    <label style="font-weight: bold; height: 45px;">$125.00</label>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>

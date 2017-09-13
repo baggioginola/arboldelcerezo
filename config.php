@@ -25,7 +25,7 @@ define('JS', DOMAIN . 'includes/public/js/');
 define('IMG', DOMAIN . 'includes/public/img/');
 
 define('PRODUCT_IMG', DOMAIN . 'panel-control/includes/public/imagenes_productos/');
-
+define('PRODUCT_IMG_ROOT', __ROOT__ . '/panel-control/includes/public/imagenes_productos/');
 #Database
 define('DBHOST', 'localhost');
 define('DBNAME', 'arboldelcerezo');

@@ -47,7 +47,7 @@ class Categories extends BaseController
             return false;
         }
 
-        if ($result = CategoriesModel::singleton()->getById($this->parameters['id_categoria'])) {
+        if ($result = CategoriesModel::singleton()->getById($this->parameters['id'])) {
             return $result;
         }
 

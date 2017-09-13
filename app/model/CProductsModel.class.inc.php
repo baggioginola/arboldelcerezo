@@ -93,20 +93,15 @@ class ProductsModel extends Database
 
         $result_array = array();
 
-        $query = "SELECT " . self::$table . ".id_producto, " . self::$table . ".id_categoria, " . self::$table . ".nombre, 
+        $query = "SELECT " . self::$table . ".id, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
         " . self::$table . ".descripcion,
-        " . self::$table . ".detalles_tecnicos, " . self::$table . ".precio, " . self::$table . ".moneda, 
-        " . self::$table . ".codigo_interno, categorias.nombre as categoria, marcas.nombre as marca,
-        marcas.descuento,iva, tipo_cambio.moneda, tipo_cambio.tipo_cambio
-            FROM  " . self::$table . " 
-            INNER JOIN categorias
-             ON " . self::$table . ".id_categoria = categorias.id_categoria
-             INNER JOIN marcas
-             ON " . self::$table . ".id_marca = marcas.id_marca
-             INNER JOIN tipo_cambio
-             ON " . self::$table . ".moneda = tipo_cambio.id_tipo_cambio
-            WHERE id_producto = '" . $id . "' and " . self::$table . ".STATUS = true
-            AND " . self::$table . ".num_imagenes > 0;";
+        " . self::$table . ".precio,
+        categoria.nombre as categoria
+            FROM  " . self::$table . "
+            LEFT JOIN categoria
+             ON " . self::$table . ".id_categoria = categoria.id
+            WHERE " . self::$table . ".id = '" . $id . "'
+            AND " . self::$table . ".STATUS = true AND categoria.status = true";
 
         if (!$result = $this->query($query)) {
             return false;
@@ -122,12 +117,12 @@ class ProductsModel extends Database
     }
 
     /**
-     * @param string $id_category
+     * @param string $id
      * @return array|bool
      */
-    public function getByCategory($id_category = '')
+    public function getByCategory($id = '')
     {
-        if (empty($id_category)) {
+        if (empty($id)) {
             return false;
         }
 
@@ -137,20 +132,15 @@ class ProductsModel extends Database
 
         $result_array = array();
 
-        $query = "SELECT " . self::$table . ".id_producto, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
+        $query = "SELECT " . self::$table . ".id, " . self::$table . ".id_categoria, " . self::$table . ".nombre,
         " . self::$table . ".descripcion,
-        " . self::$table . ".detalles_tecnicos, " . self::$table . ".precio, " . self::$table . ".moneda,
-        " . self::$table . ".codigo_interno, categorias.nombre as categoria, marcas.nombre as marca,
-        marcas.descuento,iva, tipo_cambio.moneda, tipo_cambio.tipo_cambio
+        " . self::$table . ".precio,
+        categoria.nombre as categoria
             FROM  " . self::$table . "
-            INNER JOIN categorias
-             ON " . self::$table . ".id_categoria = categorias.id_categoria
-             INNER JOIN marcas
-             ON " . self::$table . ".id_marca = marcas.id_marca
-             INNER JOIN tipo_cambio
-             ON " . self::$table . ".moneda = tipo_cambio.id_tipo_cambio
-            WHERE categorias.id_categoria = '" . $id_category . "' and " . self::$table . ".STATUS = true
-            AND " . self::$table . ".num_imagenes > 0;";
+            LEFT JOIN categoria
+             ON " . self::$table . ".id_categoria = categoria.id
+            WHERE categoria.id = '" . $id . "'
+            AND " . self::$table . ".STATUS = true AND categoria.status = true";
 
         if (!$result = $this->query($query)) {
             return false;
@@ -163,43 +153,5 @@ class ProductsModel extends Database
         }
 
         return $result_array;
-    }
-
-    public function updateLikes($id_product = null)
-    {
-        if (is_null($id_product)) {
-            return false;
-        }
-
-        if (!$this->connect()) {
-            return false;
-        }
-
-        $query = "UPDATE " . self::$table . " SET likes = likes + 1 where id_producto = " . $id_product . ";";
-
-        if (!$result = $this->query($query)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function updateSales($id_product = null, $value = null)
-    {
-        if (is_null($id_product) || is_null($value)) {
-            return false;
-        }
-
-        if (!$this->connect()) {
-            return false;
-        }
-
-        $query = "UPDATE " . self::$table . " SET ventas = ventas + " . $value . " WHERE id_producto = " . $id_product . ";";
-
-        if (!$result = $this->query($query)) {
-            return false;
-        }
-
-        return true;
     }
 }

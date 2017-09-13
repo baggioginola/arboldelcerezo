@@ -14,10 +14,10 @@
                 <li><a href="#">Inicio</a></li>
                 <li>&gt;</li>
                 <li>
-                    <a href="#">Bolsas</a>
+                    <a href="{{ settings.DOMAIN }}categoria/{{ producto.id_categoria }}">{{ producto.categoria }}</a>
                 </li>
                 <li>&gt;</li>
-                <li><span class="active-page">Bolsa 1</span></li>
+                <li><span class="active-page">{% autoescape %}{{ producto.nombre | raw }}{% endautoescape %}</span></li>
             </ol>
         </div>
         <!-- end breadcrumb -->
@@ -27,20 +27,20 @@
             <div class="container">
                 <div class="row product">
                     <div class="col-md-6 col-md-offset-0">
-                        <img class="img-responsive" src="{{ settings.IMG }}productos/3.jpg"
+                        <img class="img-responsive" src="{{ producto.url_image }}"
                              id="bigPic"
                              alt=""
                              title=""/>
                     </div>
                     <div class="col-md-6" style="text-align: justify;">
-                        <h2>Bolsa 1</h2>
+                        <h2>{% autoescape %}{{ producto.nombre | raw }}{% endautoescape %}</h2>
 
                         <p>{% autoescape %}
-                            Descripción
+                            {{ producto.descripcion | raw }}
                             {% endautoescape %}
                         </p>
 
-                        <h3>$125.00</h3>
+                        <h3>${{ producto.precio }}</h3>
 
                         <button class="btn btn-primary add_cart" type="button" id=""
                                 style="float:left; margin-top: 5px;">Agregar al carrito
