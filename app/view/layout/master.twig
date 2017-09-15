@@ -10,10 +10,13 @@
         <link rel="stylesheet" href="{{ settings.CSS }}styles.css">
 
         <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
+        <script src="{{ settings.JS }}custom/config.js" type="text/javascript"></script>
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     {% endblock %}
 </head>
 
@@ -35,6 +38,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
             <form class="navbar-form navbar-right">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Buscar">
@@ -54,6 +58,7 @@
                 </li>
                 <li><a href="{{ settings.DOMAIN }}quienes-somos">¿Quiénes Somos?</a></li>
                 <li><a href="{{ settings.DOMAIN }}contacto">Contacto</a></li>
+                <li><a href="{{ settings.DOMAIN }}cart" ><img src="{{ settings.IMG }}/cart.png" width="20px"> | <span id="cart_productos">{% if cart_products == 0 %}Vacío {% else %}{{ cart_products }} producto(s){% endif %}</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

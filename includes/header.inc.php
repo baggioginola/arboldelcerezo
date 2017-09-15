@@ -14,6 +14,7 @@ if (strcasecmp(ENVIRONMENT, 'test') == 0) {
     ini_set('display_errors', 1);
 }
 
+session_start();
 $settings = array(
     'CSS' => CSS,
     'JS' => JS,
