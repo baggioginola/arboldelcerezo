@@ -112,7 +112,7 @@ class CartModel extends Database
 
         $result_array = array();
 
-        $query = "SELECT id_cart_productos FROM cart_productos WHERE id_cart = '" . $cart_id . "'
+        $query = "SELECT id FROM cart_productos WHERE id_cart = '" . $cart_id . "'
                     AND id_producto = '" . $product_id . "' ";
 
         if (!$result = $this->query($query)) {
@@ -170,21 +170,17 @@ class CartModel extends Database
 
         $result_array = array();
 
-        $query = "SELECT cart_productos.id_cart_productos,cart.id_cart as id_cart,
-		productos.nombre, SUM(precio) as total, COUNT(productos.id_producto) AS numero_productos, 
-		productos.id_producto,iva,marcas.nombre as marca, categorias.nombre as categoria,
-		tipo_cambio.moneda,marcas.descuento,productos.id_marca, tipo_cambio.tipo_cambio, precio, productos.codigo_interno
-		FROM  cart inner join cart_productos
-		ON cart.id_cart = cart_productos.id_cart
-		INNER JOIN productos
-		ON cart_productos.id_producto = productos.id_producto
-		INNER JOIN marcas
-		ON marcas.id_marca = productos.id_marca
-		INNER JOIN categorias
-		ON categorias.id_categoria = productos.id_categoria
-		INNER JOIN tipo_cambio
-		ON productos.moneda = tipo_cambio.id_tipo_cambio
-		WHERE 1=1 AND cart.id_cart ='" . $id . "'
+        $query = "SELECT cart_productos.id,cart.id as id_cart,
+		producto.nombre, SUM(precio) as total, COUNT(producto.id) AS numero_productos,
+		producto.id,categoria.nombre as categoria,
+		precio
+		FROM cart inner join cart_productos
+		ON cart.id = cart_productos.id_cart
+		INNER JOIN producto
+		ON cart_productos.id_producto = producto.id
+		INNER JOIN categoria
+		ON categoria.id = producto.id_categoria
+		WHERE 1=1 AND cart.id = '" . $id . "'
 		GROUP BY id_producto;";
 
         #echo $query . "\n";
@@ -212,7 +208,7 @@ class CartModel extends Database
             return false;
         }
 
-        $where = "id_cart_productos = " . $id;
+        $where = "id = " . $id;
 
         if (!$result = $this->remove('cart_productos', $where)) {
             return false;

@@ -49,6 +49,41 @@ $app->get('/producto/{id}', function ($request, $response, $args) {
     return $this->view->render($response, 'product.twig', array('settings' => $settings, 'categories' => $categories, 'producto' => $result, 'cart_products' => $cart_products['total']));
 });
 
+$app->get('/carrito-compra', function ($request, $response, $args) {
+    global $settings, $categories, $cart_products;
+
+    if ($cart_products == 0) {
+        return $response->withStatus(200)->withHeader('Location', DOMAIN);
+    }
+
+    $result = Cart::singleton()->getAllProducts();
+
+    $result = getProductsUrl($result);
+
+    $total = number_format(getTotal($result, 'total'), 2);
+
+    return $this->view->render($response, 'carrito-compra.twig', array('settings' => $settings, 'categories' => $categories, 'result' => $result, 'cart_products' => $cart_products['total'], 'total' => $total));
+});
+
+$app->get('/pago', function ($request, $response, $args) {
+    global $settings, $categories, $cart_products;
+    return $this->view->render($response, 'pago.twig', array('settings' => $settings, 'categories' => $categories, 'cart_products' => $cart_products['total']));
+});
+
+$app->get('/confirmar-paypal', function ($request, $response, $args) {
+    global $settings;
+    require_once __CONTROLLER__ . 'CPaypalController.class.inc.php';
+    $result = Paypal::singleton()->pay();
+
+    echo $result;
+
+    if (!$result) {
+        return $response->withStatus(200)->withHeader('Location', DOMAIN);
+    }
+
+    return $response->withStatus(200)->withHeader('Location', $result);
+});
+
 $app->get('/quienes-somos', function ($request, $response, $args) {
     global $settings, $categories, $cart_products;
     return $this->view->render($response, 'quienes-somos.twig', array('settings' => $settings, 'categories' => $categories, 'cart_products' => $cart_products['total']));

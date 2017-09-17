@@ -1,0 +1,111 @@
+{% extends "layout/master.twig" %}
+
+{% block title %}Cart Resumen{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ settings.JS }}custom/cart.js"></script>
+{% endblock %}
+{% block body_id %}productOverview{% endblock %}
+{% block content %}
+
+    <div class="container-fluid wide-content">
+        <div class="container" id="breadcrumb">
+            <ol>
+                <li><a href="{{ settings.DOMAIN }}">Inicio</a></li>
+                <li>&gt;</li>
+                <li>
+                    <span class="active-page">Carrito Compra</span>
+                </li>
+            </ol>
+        </div>
+        <!-- end breadcrumb -->
+
+        <div id="section_1">
+
+            <div class="container pageTitle">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-sm-12">
+                        <h1>CARRITO DE COMPRAS</h1>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th><span style="font-size: 14px; color: #fff;">Producto</span></th>
+                                    <th class="text-center"><span style="font-size: 14px; color: #fff;">Precio</span>
+                                    </th>
+                                    <th class="text-center"><span style="font-size: 14px; color: #fff;">Cantidad </span>
+                                    </th>
+                                    <th class="text-center"><span style="font-size: 14px; color: #fff;">Total</span>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for producto in result %}
+                                    <tr>
+                                        <td style="width: 50%">
+                                            <div class="row">
+                                                <div class="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs hidden-md">
+                                                    <a href="{{ settings.DOMAIN }}producto/{{ producto.id }}">
+                                                        <img class="img-responsive"
+                                                             src="{{ producto.url_image }}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                                                    <a href="{{ settings.DOMAIN }}producto/{{ producto.id }}">
+                                                        <h4>{{ producto.nombre }}</h4>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center"><span
+                                                    style="font-size: 14px;">$ {{ producto.precio }}</span></td>
+                                        <td class="text-center"><span
+                                                    style="font-size: 14px;">{{ producto.numero_productos }}</span></td>
+                                        <td class="text-center"><span
+                                                    style="font-size: 14px;">$ {{ producto.total }}</span></td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm id_delete_cart"
+                                                    id="{{ producto.id }}" role="button"><i
+                                                        class="fa fa-trash-o"></i></button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-right"><span style="font-size: 16px;">Total</span></td>
+                                    <td class="text-center"><span style="font-size: 16px;">$ {{ total }}</span></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-center">
+                                        <a href="{{ settings.DOMAIN }}pago" class="btn btn-info"
+                                           role="button">Continuar</a>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -45,3 +45,18 @@ function getProductUrl($result)
     }
     return $result;
 }
+
+function getTotal($array, $key)
+{
+    if (!$array || empty($key)) {
+        return false;
+    }
+
+    $total = 0;
+
+    foreach ($array as $k => $v) {
+        $total = $total + $array[$k][$key];
+    }
+
+    return $total;
+}

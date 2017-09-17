@@ -1,0 +1,53 @@
+{% extends "layout/master.twig" %}
+
+{% block title %}Pago{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block body_id %}productOverview{% endblock %}
+{% block content %}
+
+    <div class="container-fluid wide-content">
+        <div class="container" id="breadcrumb">
+            <ol>
+                <li><a href="{{ settings.DOMAIN }}">Inicio</a></li>
+                <li>&gt;</li>
+                <li>
+                    <a href="{{ settings.DOMAIN }}carrito-compra">Carrito Compra</a>
+                </li>
+                <li>&gt;</li>
+                <li>
+                    <span class="active-page">Pago</span>
+                </li>
+            </ol>
+        </div>
+
+        <div id="section_1">
+
+            <div class="container pageTitle">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-sm-12">
+                        <h1>PAGO</h1>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 50px;">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <img class="img-responsive" src="{{ settings.IMG }}paypal.png" width="150"
+                                         style="margin: 0 auto;"/>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"
+                                     style="padding-top: 25px;">
+                                    <a class="btn btn-info" role="button" href="{{ settings.DOMAIN }}confirmar-paypal">Aceptar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.text -->
+        </div>
+    </div>
+{% endblock %}

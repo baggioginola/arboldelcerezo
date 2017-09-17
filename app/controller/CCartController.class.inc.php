@@ -38,20 +38,12 @@ class Cart extends BaseController
             return false;
         }
 
-        if (!$result_cart = $this->getById($result['id_cart'])) {
+        if (!$result = CartModel::singleton()->getById($result['id'])) {
             return false;
         }
 
-        $row_array = array();
-        $total_products = 0;
-        foreach ($result_cart as $key) {
-            foreach ($key as $value => $result) {
-                $row_array[$value] = $result;
-            }
-            $total_products = $total_products + $row_array['numero_productos'];
-        }
 
-        return $total_products;
+        return $result;
     }
 
     /**
@@ -64,7 +56,7 @@ class Cart extends BaseController
             return false;
         }
 
-        if(!$total_products = CartModel::singleton()->getTotalProductsById($result['id'])){
+        if (!$total_products = CartModel::singleton()->getTotalProductsById($result['id'])) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
@@ -96,7 +88,7 @@ class Cart extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        if(!$total_products = CartModel::singleton()->getTotalProductsById($this->parameters['id_cart'])){
+        if (!$total_products = CartModel::singleton()->getTotalProductsById($this->parameters['id_cart'])) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
@@ -115,55 +107,15 @@ class Cart extends BaseController
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        if (!$result_cart = CartModel::singleton()->getByCartIdProductId($result['id_cart'], $this->parameters['id_producto'])) {
+        if (!$result_cart = CartModel::singleton()->getByCartIdProductId($result['id'], $this->parameters['id_producto'])) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
-        if (!CartModel::singleton()->delete($result_cart['id_cart_productos'])) {
+        if (!CartModel::singleton()->delete($result_cart['id'])) {
             return json_encode($this->getResponse(STATUS_FAILURE_INTERNAL, MESSAGE_ERROR));
         }
 
         return json_encode($this->getResponse(STATUS_SUCCESS, MESSAGE_SUCCESS));
-    }
-
-    private function getTotal($array = array())
-    {
-        if (!$array) {
-            return false;
-        }
-
-        $total = $array['total'] * $array['tipo_cambio'];
-        $total = $total - ($total * ($array['descuento'] / 100));
-        $total = $total + ($total * $array['iva']);
-
-        return $total;
-    }
-
-    private function getPrice($array = array())
-    {
-        if (!$array) {
-            return false;
-        }
-
-        $total = $array['precio'] * $array['tipo_cambio'];
-        $total = $total - ($total * ($array['descuento'] / 100));
-        $total = $total + ($total * $array['iva']);
-
-        return $total;
-    }
-
-    /**
-     * @return string
-     */
-    private function getById($id = null)
-    {
-        if (is_null($id)) {
-            return false;
-        }
-
-        $result = CartModel::singleton()->getById($id);
-
-        return $result;
     }
 
     /**

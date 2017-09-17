@@ -66,7 +66,7 @@ jQuery(document).ready(function () {
             dataType: 'json',
             success: function (response) {
                 if(response.status == 200) {
-                    window.location = BASE_ROOT + 'cart';
+                    window.location = BASE_ROOT + 'carrito-compra';
                 }
             }
         });

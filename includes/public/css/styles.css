@@ -187,3 +187,21 @@ span.product-name a:hover {
     color: #000;
     text-decoration: none;
 }
+
+.table {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0
+}
+
+.table thead {
+    background: #000;
+    color: #FFF;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0
+}
+
+.table, .table > thead > tr > th {
+    border-bottom: 1px solid #000
+}
