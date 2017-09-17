@@ -52,25 +52,6 @@ class Paypal extends BaseController
             return false;
         }
 
-        $row_array = array();
-        $result_all = array();
-        $i = 0;
-        $total = 0;
-        /*
-        foreach ($result_cart as $key) {
-            foreach ($key as $value => $result) {
-                $row_array[$value] = $result;
-            }
-            $result_all[$i]['nombre'] = $row_array['codigo_interno'];
-            $result_all[$i]['numero_productos'] = $row_array['numero_productos'];
-
-            $price = $this->getPrice($row_array);
-            $result_all[$i]['precio'] = number_format($this->getPrice($row_array), 2, '.', '');
-            $result_all[$i]['iva'] = number_format(($price * $this->iva), 2, '.', '');
-            $i++;
-        }
-        */
-
         $this->setQueryString($result_cart);
 
         $result = $this->paypal_url . $this->queryString;
