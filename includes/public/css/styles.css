@@ -15,11 +15,11 @@
 }
 
 .navbar-default .navbar-brand {
-    color: #151137;
+    color: #362081;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #151137;
+    color: #362081;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -40,7 +40,7 @@
 
 .highlightsTitle {
     display: block;
-    color: #151137;
+    color: #362081;
     font-size: 47px;
     font-weight: 300;
     text-align: center;
@@ -70,7 +70,7 @@ span.product-name {
 span.product-name a {
     display: block;
     font-size: 16px;
-    color: #151137;
+    color: #362081;
     text-align: center;
     line-height: 18px;
     margin-top: 5px;
@@ -110,7 +110,7 @@ span.product-name a:hover {
 
 #breadcrumb li .nolink-page, #breadcrumb li a {
     text-transform: uppercase;
-    color: #151137
+    color: #362081
 }
 
 #breadcrumb li a:hover {
@@ -126,7 +126,7 @@ span.product-name a:hover {
 }
 
 #productOverview .pageTitle h1 {
-    color: #151137;
+    color: #362081;
     font-size: 51px;
     font-weight: 300;
     text-align: center;
@@ -152,7 +152,7 @@ span.product-name a:hover {
 
 .products_thumbnail {
     text-decoration: none;
-    color: #151137;
+    color: #362081;
     font-size: 20px;
     text-align: center;
 }
