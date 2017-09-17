@@ -93,3 +93,19 @@ $app->get('/contacto', function ($request, $response, $args) {
     global $settings, $categories, $cart_products;
     return $this->view->render($response, 'contacto.twig', array('settings' => $settings, 'categories' => $categories, 'cart_products' => $cart_products['total']));
 });
+
+$app->get('/buscar', function ($request, $response, $args) {
+    global $settings, $categories, $cart_products;
+
+    require_once __CONTROLLER__ . 'CSearchController.class.inc.php';
+
+    $result = array();
+    $params = $request->getQueryParams();
+
+    $q = $params['q'];
+    $result = Search::singleton()->getProductsbyQuery($q);
+
+    $result = getProductsUrl($result);
+
+    return $this->view->render($response, 'search.twig', array('settings' => $settings, 'categories' => $categories, 'cart_products' => $cart_products['total'], 'result' => $result));
+});

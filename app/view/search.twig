@@ -1,0 +1,80 @@
+{% extends "layout/master.twig" %}
+
+
+{% block title %}Búsqueda{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+    <script src="{{ settings.JS }}custom/search.js" type="text/javascript"></script>
+    <script src="{{ settings.JS }}bootbox.min.js"></script>
+{% endblock %}
+{% block body_id %}productOverview{% endblock %}
+{% block content %}
+    <div class="container-fluid wide-content">
+        <div class="container" id="breadcrumb">
+            <ol>
+                <li><a href="{{ settings.DOMAIN }}">Inicio</a></li>
+                <li>&gt;</li>
+                <li>
+                    <span class="active-page">Búsqueda</span>
+                </li>
+            </ol>
+        </div>
+
+        <div class="container pageTitle">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1>Búsqueda</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="section_1">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="tab-content">
+
+                            <div class="tab-pane active">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 results-col"
+                                         id="product_results">
+                                        {% if result is empty %}
+                                            <h3>NO SE ENCONTRARON RESULTADOS</h3>
+                                        {% else %}
+                                            {% for producto  in result %}
+                                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+
+                                                    <div class="thumbnail">
+                                                        <a href="{{ settings.DOMAIN }}producto/{{ producto.id }}"
+                                                           class="products_thumbnail">
+                                                            <img
+                                                                    src="{{ producto.url_image }}"
+                                                                    alt="{{ producto.nombre }}"
+                                                                    title="{{ producto.nombre }}"/>
+                                                            <label>{{ producto.nombre }}</label>
+                                                            <label style="font-weight: bold; height: 45px;">${{ producto.precio }}</label>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
