@@ -20,11 +20,11 @@ class Paypal extends BaseController
 
     private $parameters = array();
     private $iva = 0.16;
-    private $email = 'mariocuevas-facilitator88@gmail.com'; //sandobx account
+    private $email = 'mariocuevas88@gmail.com'; //sandobx account
     private $queryString = '';
     private $validParameters = array();
     private $url = array();
-    private $paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; //sandbox url
+    private $paypal_url = 'https://www.paypal.com/cgi-bin/webscr'; //sandbox url
 
     /**
      * @return Paypal|null

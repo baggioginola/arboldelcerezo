@@ -53,19 +53,17 @@ class Contact extends BaseController
             return false;
         }
 
-        #$this->header .= $this->parameters['e_mail'];
-        #return true;
+        $this->header .= $this->parameters['e_mail'];
 
-        return true;
-        #return mail($this->send_to, $this->subject, $this->message, $this->header);
+        return mail($this->send_to, $this->subject, $this->message, $this->header);
     }
 
     private function setMessage()
     {
-        $this->message .= 'Nombre: ' . $this->parameters['name'] . "\n";
-        $this->message .= 'E-mail: ' . $this->parameters['e_mail'] . "\n";
-        $this->message .= 'Teléfono: ' . $this->parameters['phone'] . "\n";
-        $this->message .= 'Mensaje: ' . $this->parameters['message'] . "\n";
+        $this->message .= 'Nombre: ' . utf8_decode($this->parameters['name']) . "\n";
+        $this->message .= 'E-mail: ' . utf8_decode($this->parameters['e_mail']) . "\n";
+        $this->message .= 'Telefono: ' . utf8_decode($this->parameters['phone']) . "\n";
+        $this->message .= 'Mensaje: ' . utf8_decode($this->parameters['message']) . "\n";
     }
     /**
      * @return bool

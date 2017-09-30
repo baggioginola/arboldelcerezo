@@ -10,6 +10,7 @@ function getProductsUrl($result)
 {
     $png = '.png';
     $jpg = '.jpg';
+    $default_image = 'default_image';
 
     if (empty($result)) {
         return $result;
@@ -21,7 +22,7 @@ function getProductsUrl($result)
         } else if (file_exists(PRODUCT_IMG_ROOT . $value['id'] . $png)) {
             $result[$key]['url_image'] = PRODUCT_IMG . $value['id'] . $png;
         } else {
-            $result[$key]['url_image'] = PRODUCT_IMG . $this->default_image . $jpg;
+            $result[$key]['url_image'] = PRODUCT_IMG . $default_image . $jpg;
         }
     }
     return $result;
@@ -29,6 +30,7 @@ function getProductsUrl($result)
 
 function getProductUrl($result)
 {
+    $default_image = 'default_image';
     $png = '.png';
     $jpg = '.jpg';
 
@@ -41,7 +43,7 @@ function getProductUrl($result)
     } else if (file_exists(PRODUCT_IMG_ROOT . $result['id'] . $png)) {
         $result['url_image'] = PRODUCT_IMG . $result['id'] . $png;
     } else {
-        $result['url_image'] = PRODUCT_IMG . $this->default_image . $jpg;
+        $result['url_image'] = PRODUCT_IMG . $default_image . $jpg;
     }
     return $result;
 }
