@@ -2,15 +2,435 @@
     background-color: #fff;
 }
 
-#header {
-    -webkit-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
-    -moz-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
-    box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+.navbar-default .navbar-brand {
+    color: #362081;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #362081;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #D30029;
+    background-color: transparent;
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+    #myCarousel {
+        padding-top: 102px;
+    }
+    #header {
+        padding-top: 0;
+        margin-bottom: 0
+    }
+
+    #carrusel-a {
+        padding-top: 78px;
+    }
+
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover, .navbar-toggle {
+        background-color: transparent
+    }
+
+    .navbar-brand, .new-header-mobile .navbar-brand {
+        height: auto;
+        line-height: 20px;
+        margin: 0 auto;
+        font-weight: 400
+    }
+
+    .logoMenuBlock {
+        padding-top: 22px;
+        padding-bottom: 10px
+    }
+
+    .navbar-brand {
+        display: block;
+        padding: 0 0 12px;
+        font-size: 18px
+    }
+
+    .navbar-brand img {
+        width: 100px;
+    }
+
+    .navbar-brand span {
+        display: none !important
+    }
+
+    .navbar-toggle {
+        position: static;
+        float: none;
+        padding: 0;
+        margin: 0 auto;
+        display: block;
+        width: auto;
+        text-align: center;
+        background-image: none;
+        border: transparent;
+        border-radius: 0
+    }
+
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        border-color: transparent
+    }
+
+    .navbar-toggle .icon-bar {
+        display: none
+    }
+
+    .new-header-mobile .logoMenuBlock {
+        padding: 20px 25px 0px
+    }
+
+    .new-header-mobile .navbar-brand {
+        float: left;
+        display: block;
+        padding: 0 0 12px;
+        font-size: 18px
+    }
+
+    .new-header-mobile .navbar-toggle {
+        position: static;
+        float: right;
+        padding: 0;
+        margin: 0 auto;
+        display: block;
+        width: auto;
+        text-align: center;
+        background-color: transparent;
+        background-image: none;
+        border: transparent;
+        border-radius: 0;
+        padding-right: 20px;
+        margin-top: 30px;
+    }
+
+    .new-header-mobile .navbar-toggle .icon-bar {
+        display: block;
+        border-radius: 0;
+        width: 30px;
+        height: 5px
+    }
+
+    .new-header-mobile.navbar-default .navbar-toggle .icon-bar {
+        background-color: #000;
+        margin-left: auto;
+        margin-right: auto
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #header {
+        padding-top: 0;
+        margin-bottom: 0
+    }
+
+    #myCarousel {
+        padding-top: 110px;
+    }
+
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover, .navbar-toggle {
+        background-color: transparent
+    }
+
+    .logoMenuBlock {
+        padding-top: 10px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    #navbar {
+        display: none !important;
+    }
+
+    .navbar-brand {
+        float: left;
+        display: block;
+        height: auto;
+        margin: 0 auto;
+        padding: 0 15px 12px;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px
+    }
+
+    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin-left: auto
+    }
+
+    .navbar-header {
+        float: left;
+    }
+
+    .navbar-brand span {
+        position: absolute;
+        top: 40px;
+    }
+
+    .navbar-brand img {
+        width: 120px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    #navbar {
+        display: none !important;
+    }
+
+    #header {
+        padding-top: 0;
+        margin-bottom: 0;
+        -webkit-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+        -moz-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+        box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2)
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    #myCarousel {
+        padding-top: 110px;
+    }
+
+    .logoMenuBlock {
+        padding-top: 10px
+    }
+
+    .container-search-block {
+        padding-top: 20px
+    }
+
+    .navbar-brand {
+        float: left;
+        height: auto;
+        padding: 0 0 0 15px;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px
+    }
+
+    .navbar-brand img {
+        width: 125px;
+    }
+
+    .navbar-brand span {
+        font-size: 28px;
+        position: absolute;
+        top: 40px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #navbar {
+        display: none !important;
+    }
+
+    .logoMenuBlock {
+        padding-top: 10px;
+        width: 1170px
+    }
+
+    .container-search-block {
+        padding-top: 20px;
+        width: 1170px
+    }
+
+    .navbar-brand {
+        float: left;
+        height: auto;
+        padding: 0 0 0 15px;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px
+    }
+
+    .navbar-brand img {
+        width: 125px;
+    }
+
+    .navbar-brand span {
+        font-size: 28px;
+        position: absolute;
+        top: 40px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    #header {
+        padding-top: 0;
+        margin-bottom: 0;
+        -webkit-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+        -moz-box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2);
+        box-shadow: 0 3px 3px 0 rgba(50, 50, 50, .2)
+    }
+
+    #myCarousel {
+        padding-top: 110px;
+    }
+}
+
+.nav-area .nav-bottom li {
+    float: left;
+    list-style-type: none;
+    height: 39px;
+}
+
+.nav-area .nav-bottom li a {
+    text-transform: uppercase;
+    font-style: normal;
+    color: #362081;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    line-height: 39px;
+}
+
+.nav-area .nav-bottom li a:hover,
+.nav-area .nav-bottom li a:focus {
+    color: #D30029;
+    background-color: transparent;
+}
+
+.searchButton {
+    background-color: #fff;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 0px;
+    float: right;
+}
+
+.social {
+    float: right;
+    margin-top: 8px;
+}
+
+.social a#twitter {
+
+    background: url("../img/social/twitter.png") no-repeat scroll 0 top transparent;
+
+    float: left;
+
+    height: 32px;
+
+    margin-left: 15px;
+
+    margin-right: 0;
+
+    width: 32px;
+
+}
+
+.social a#twitter:hover {
+
+    background-position: 0 bottom;
+
+}
+
+.social a#face {
+
+    background: url("../img/social/facebook.png") no-repeat scroll 0 top transparent;
+
+    float: left;
+
+    height: 32px;
+
+    margin-left: 25px;
+
+    width: 32px;
+
+}
+
+.social a#face:hover {
+
+    background-position: 0 bottom;
+
+}
+
+.social a#insta {
+    background: url("../img/social/instagram.png") no-repeat scroll 0 top transparent;
+    float: left;
+
+    height: 32px;
+
+    margin-left: 25px;
+
+    width: 32px;
+
+}
+
+.social a#insta:hover {
+
+    background-position: 0 bottom;
+
+}
+
+.social a#pinte {
+
+    background: url("../img/social/pinterest.png") no-repeat scroll 0 top transparent;
+
+    float: left;
+
+    height: 32px;
+
+    margin-left: 25px;
+
+    width: 32px;
+
+}
+
+.social a#pinte:hover {
+
+    background-position: 0 bottom;
+
+}
+
+.cart {
+    float: right;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+.cart .cart_img {
+    float: left;
+}
+
+.cart .cart_link {
+    float: left;
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+.cart .cart_link a {
+    color: #362081;
+    text-decoration: none;
+}
+
+.cart .cart_link a:hover,
+.cart .cart_link a:focus {
+    color: #D30029;
+}
+
+.nav-area {
+    float: right;
+    height: 50px;
+}
+
+.nav-area .nav-bottom {
+    float: right;
+    margin-top: 10px;
 }
 
 .navbar-brand img {
     float: left;
-    width: 50px;
     margin-right: 15px;
 }
 
@@ -118,7 +538,7 @@ span.product-name a:hover {
 }
 
 #productOverview {
-    padding-top: 55px;
+    padding-top: 105px;
 }
 
 #productOverview .wide-content {

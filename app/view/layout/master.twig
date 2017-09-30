@@ -21,36 +21,43 @@
 </head>
 
 <body id="{% block body_id %}{% endblock %}">
-<nav class="navbar navbar-default navbar-fixed-top" id="header">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+<nav id="header" class="navbar navbar-default navbar-fixed-top new-header-mobile" role="navigation">
+
+    <div class="container logoMenuBlock" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="Árbol de Cerezo"/>
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+
+            <a class="navbar-brand" href="{{ settings.DOMAIN }}" itemprop="url">
+                <img itemprop="logo" alt="Árbol de Cerezo" title="Ärbol de Cerezo"
+                     src="{{ settings.IMG }}logo.png" width=""/>
+                <span>Árbol de Cerezo</span>
+            </a>
+
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="{{ settings.DOMAIN }}"><img src="{{ settings.IMG }}logo.png">El Árbol de
-                Cerezo</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <form class="navbar-form navbar-right" id="searchbox" action="{{ settings.DOMAIN }}buscar">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Buscar" autocomplete="off" required="required"
-                           type="text" {% if q is defined %} value="{{ q }}" {% endif %} name="q">
-                </div>
-                <button type="submit" class="btn btn-default">Aceptar</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="true">
+            <ul class="nav navbar-nav">
+                <li>
+                    <form id="searchbox" action="{{ settings.DOMAIN }}buscar">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar" autocomplete="off"
+                                   required="required"
+                                   type="text" {% if q is defined %} value="{{ q }}" {% endif %} name="q">
+                        </div>
+                        <button type="submit" class="btn btn-default">Aceptar</button>
+                    </form>
+                </li>
+                <li class="active"><a href="{{ settings.DOMAIN }}">Inicio</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Categorías <span class="caret"></span></a>
+                       aria-expanded="false">Categorías<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         {% for category  in categories %}
                             <li><a href="{{ settings.DOMAIN }}categoria/{{ category.id }}">{{ category.nombre }}</a>
@@ -58,16 +65,61 @@
                         {% endfor %}
                     </ul>
                 </li>
-                <li><a href="{{ settings.DOMAIN }}quienes-somos">¿Quiénes Somos?</a></li>
+                <li><a href="{{ settings.DOMAIN }}quienes-somos">¿Quiénes somos?</a></li>
                 <li><a href="{{ settings.DOMAIN }}contacto">Contacto</a></li>
-                <li><a href="{{ settings.DOMAIN }}carrito-compra"><img src="{{ settings.IMG }}/cart.png" width="20px"> |
-                        <span id="cart_productos">{% if cart_products == 0 %}Vacío {% else %}{{ cart_products }} producto(s){% endif %}</span></a>
-                </li>
+                <li><a href="{{ settings.DOMAIN }}carrito-compra">Carrito de compras</a></li>
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
+
+        <div id="menuOptions" class="navbar-collapse collapse" style="float: right;">
+            <div style="float: right;">
+                <div class="searchButton navbar-form">
+                    <form id="searchbox" action="{{ settings.DOMAIN }}buscar">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar" autocomplete="off"
+                                   required="required"
+                                   type="text" {% if q is defined %} value="{{ q }}" {% endif %} name="q">
+                        </div>
+                        <button type="submit" class="btn btn-default">Aceptar</button>
+                    </form>
+                </div>
+                <div class="social">
+                    <a id="face" target="_blank" href=" https://www.facebook.com/pages/Iluminamos/200293543351840"></a>
+                </div>
+                <div class="cart">
+                    <div class="cart_img"><img src="{{ settings.IMG }}cart.png" width="28px"/></div>
+                    <div class="cart_link">
+                        <a href="{{ settings.DOMAIN }}carrito-compra" id="cart_productos">
+                            {% if total_products == 0 %}VACÍO {% else %}{{ total_products }} PRODUCTO(S){% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+            <div class="nav-area">
+                <div class="nav-bottom">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">Categorías<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% for category  in categories %}
+                                    <li><a href="{{ settings.DOMAIN }}categoria/{{ category.id }}">{{ category.nombre }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li style="padding-left: 20px;">
+                            <a href="{{ settings.DOMAIN }}quienes-somos">¿Quiénes Somos?</a>
+                        </li>
+                        <li id="limenu_4" style="padding-left: 20px;">
+                            <a href="{{ settings.DOMAIN }}contacto">CONTACTO</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.container-fluid -->
 </nav>
 {% block content %}{% endblock %}
 
