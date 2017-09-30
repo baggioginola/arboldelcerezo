@@ -13,7 +13,7 @@ class Contact extends BaseController
     public static $object = null;
 
     private $parameters = array();
-    private $send_to = 'mariocuevas88@gmail.com';
+    private $send_to = 'informes@arboldecerezo.com.mx';
     private $subject = 'Contacto de Pagina Web';
     private $header = 'From:  Sitio Web <informes@arboldecerezo.com.mx>';
     private $message = '';
