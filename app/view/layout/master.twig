@@ -90,7 +90,7 @@
                     <div class="cart_img"><img src="{{ settings.IMG }}cart.png" width="28px"/></div>
                     <div class="cart_link">
                         <a href="{{ settings.DOMAIN }}carrito-compra" id="cart_productos">
-                            {% if total_products == 0 %}VACÍO {% else %}{{ total_products }} PRODUCTO(S){% endif %}
+                            {% if cart_products == 0 %}VACÍO {% else %}{{ cart_products }} PRODUCTO(S){% endif %}
                         </a>
                     </div>
                 </div>
