@@ -7,7 +7,7 @@ apellidos varchar(200) not null, email varchar(200) not null, password varchar(2
 fecha_alta timestamp,fecha_modifica timestamp);
 
 insert into usuario(nombre, apellidos,email,password,status,nivel,fecha_alta,fecha_modifica)
-values('Mario','Cuevas','mariocue@herbalife.com',md5('4rb0112345'),true,0,now(),now());
+values('Mario','Cuevas','mariocuevas88@gmail.com',md5('4rb0112345'),true,0,now(),now());
 
 create table categoria(id int(11) not null primary key auto_increment, nombre varchar(200) not null, status bool, fecha_alta timestamp,
 fecha_modifica timestamp);
